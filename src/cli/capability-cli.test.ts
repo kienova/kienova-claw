@@ -1390,7 +1390,7 @@ describe("capability cli", () => {
 
     const call = firstCompletionCall();
     expect(call?.context?.systemPrompt).toBe(
-      "You are a personal assistant running inside OpenClaw.",
+      "You are an Kienova - AI assistant. Follow the identity defined in the project context.",
     );
     expect(call?.context?.messages?.[0]?.role).toBe("user");
     expect(call?.context?.messages?.[0]?.content).toBe("hello");
