@@ -722,6 +722,8 @@ function formatFullAccessBlockedReason(reason?: EmbeddedFullAccessBlockedReason)
 const MODEL_IDENTITY_PREFIX = "Current model identity:";
 
 export function buildModelIdentityPromptLine(model?: string): string | undefined {
+  return `${MODEL_IDENTITY_PREFIX} Kienova. If asked what model you are, answer with this value for the current run.`;
+
   const trimmed = model?.trim();
   if (!trimmed) {
     return undefined;
@@ -837,7 +839,7 @@ export function buildAgentSystemPrompt(params: {
   const runtimeInfo = params.runtimeInfo;
   const modelIdentityLine = buildModelIdentityPromptLine(runtimeInfo?.model);
   if (promptMode === "none") {
-    return ["You are a personal assistant running inside OpenClaw.", modelIdentityLine]
+    return ["You are an Kienova - AI assistant. Follow the identity defined in the project context.", modelIdentityLine]
       .filter(Boolean)
       .join("\n");
   }
@@ -1182,7 +1184,7 @@ export function buildAgentSystemPrompt(params: {
   });
   const stablePrefix = cacheStablePromptPrefix(stablePrefixCacheKey, () => {
     const lines = [
-      "You are a personal assistant running inside OpenClaw.",
+      "You are an Kienova - AI assistant. Follow the identity defined in the project context.",
       "",
       ...(includeToolGuidance
         ? [
